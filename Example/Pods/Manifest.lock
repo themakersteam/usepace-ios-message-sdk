@@ -1,0 +1,16 @@
+PODS:
+  - MessageCenter (0.1.0)
+
+DEPENDENCIES:
+  - MessageCenter (from `../`)
+
+EXTERNAL SOURCES:
+  MessageCenter:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MessageCenter: 4a9dacca2266344e978c5b5b777b870921e842f7
+
+PODFILE CHECKSUM: f9a61e48ffb808b4ae4fcde8518f4e2849d793ea
+
+COCOAPODS: 1.7.2

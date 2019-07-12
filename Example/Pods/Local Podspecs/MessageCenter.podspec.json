@@ -1,0 +1,22 @@
+{
+  "name": "MessageCenter",
+  "version": "0.1.0",
+  "summary": "A short description of MessageCenter.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ikarmakhan/MessageCenter",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ikarmakhan": "ikarma.bred@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/ikarmakhan/MessageCenter.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "MessageCenter/Classes/**/*"
+}
