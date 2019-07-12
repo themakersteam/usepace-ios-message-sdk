@@ -1,0 +1,6 @@
+framework module MessageCenterSDK {
+  umbrella header "MessageCenterSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

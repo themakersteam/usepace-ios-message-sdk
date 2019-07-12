@@ -1,0 +1,63 @@
+/* 
+  Localization.strings
+  Pods
+
+  Created by Muhamed ALGHZAWI on 28/11/2018.
+  
+*/
+"send_location.title" = "إرسال الموقع";
+"send_location.map_settings.title" = "إعدادات الخريطة";
+"send_location.map_settings.map_types.satellite" = "قمر صناعي";
+"send_location.map_settings.map_types.hybrid" = "مختلطة";
+"send_location.map_settings.map_types.map" = "الخريطة";
+"send_location.send_button.case_my_location.title" = "إرسل موقعي الحالي";
+"send_location.send_button.case_pin_location.title" = "إرسل هذا الموقع";
+"send_location.location_disabled_notice.message" = "هنقرستيشن لايستطيع الوصول إلى موقعك. لتفعيل خاصية المواقع. الرجاء تفعيل خدمات الموقع من الاعدادات";
+"caption" = "إضافة وصف";
+"camera_permission_disable" = "الرجاء اعطاء صلاحية للكاميرا";
+"photos_permission_disable" = "الرجاء اعطاء صلاحية لقراءة الصور";
+"download" = "تحميل";
+"upload" = "ارسال";
+"error" = "حدث خطأ";
+"resend_message" = "اعادة الارسال";
+"resend_message_description" = "هل تريد اعادة الارسال ؟";
+"delete_message" = "حذف";
+"message_sending" = "جاري الارسال";
+"message_failed" = "فشل";
+"file_must_be_in_local_storage" = "الملف يجب ان يكون مخزن في الذاكرة الداخلية";
+"extracting_file_information_failed" = "خطأ في فك ارتباط الملفات";
+"download_file" = "تحميل الملف؟";
+"cancel" = "الغاء";
+"ok" = "موافق";
+"close" = "أغلق";
+"storage_access_permission_needed" = "لتتمكن من ارسال/تحميل الملفات الرجاء اعطاء الصلاحية";
+"camera_access_permission_needed" = "لتتمكن من ارسال الصور الرجاء اعطاء الصلاحية";
+"select_media" = "اختيار الملف";
+"is_typing" = "يكتب ...";
+"multiple_users_are_typing" = "اكثر من شخص يكتب...";
+"retry" = "اعادة المحاولة؟";
+"edit_message" = "تعديل الرسالة";
+"delete_message_option" = "حذف الرسالة";
+"type_message_hint" = "اكتب رسالة";
+"ms_caption" = "إضافة وصف";
+"ms_camera" = "الكاميرا";
+"ms_photos" = "الصور";
+"ms_location" = "الموقع";
+"ms_chat_failed_to_send" = "إضغط لإعادة المحاولة";
+"message_center_toolbar_title" = "مركز الرسائل";
+"message_center_channel_is_frozen" = "تم تجميد المحادثة";
+"message_center_new_message_from" = "لديك رسالة جديدة من ";
+"need_gps_permission" = "الرجاء اعطاء صلاحية GPS للاستمرار";
+"reconnection_failed" = "فشل اعادة الاتصال";
+"reconnect" = "إعادة الاتصال";
+"navigation_apps.apple.action_title" = "فتح في الخرائط";
+"navigation_apps.google.action_title" = "فتح في خرائط Google";
+"navigation_apps.waze.action_title" = "فتح في Waze";
+"navigation_apps.sygic.action_title" = "فتح في Sygic";
+"image_uploading_in_progress_message" = "لم يتم إرسال الصور الخاصة بك، الاستمرار دون إرسال الصورة؟";
+"yes" = "استمرار";
+"no" = "الغاء";
+"push_notification_alert_title" = "قم بتفعيل الإشعارات لتتمكن من استقبال الإشعارات الخاصة بالدردشة";
+"settings" = "الإعدادات" ;
+"cancel" = "إلغاء" ;
+"call.calling" = "اتصال...";

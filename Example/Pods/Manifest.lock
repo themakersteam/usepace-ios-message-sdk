@@ -1,0 +1,16 @@
+PODS:
+  - MessageCenterSDK (0.1.0)
+
+DEPENDENCIES:
+  - MessageCenterSDK (from `../`)
+
+EXTERNAL SOURCES:
+  MessageCenterSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MessageCenterSDK: 8742aaa4445ef52866e21ea895d946f143bcaf64
+
+PODFILE CHECKSUM: 25694c6a8ab7f372061ee79a52b0e16d0a805e49
+
+COCOAPODS: 1.7.2
