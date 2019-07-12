@@ -1,16 +1,47 @@
 PODS:
-  - MessageCenterSDK (0.1.0)
+  - Alamofire (4.8.2)
+  - AlamofireImage (3.5.2):
+    - Alamofire (~> 4.8)
+  - CryptoSwift (1.0.0)
+  - FLAnimatedImage (1.0.12)
+  - MessageCenterSDK (0.1.1):
+    - AlamofireImage
+    - CryptoSwift
+    - FLAnimatedImage
+    - SendBirdSDK
+    - Toast (~> 4.0.0)
+    - URLEmbeddedView
+  - SendBirdSDK (3.0.143)
+  - Toast (4.0.0)
+  - URLEmbeddedView (0.17.1)
 
 DEPENDENCIES:
   - MessageCenterSDK (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
+    - CryptoSwift
+    - FLAnimatedImage
+    - SendBirdSDK
+    - Toast
+    - URLEmbeddedView
 
 EXTERNAL SOURCES:
   MessageCenterSDK:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MessageCenterSDK: 8742aaa4445ef52866e21ea895d946f143bcaf64
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
+  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  MessageCenterSDK: 3ca325a63125c9ff7101472c21641a183e46c816
+  SendBirdSDK: 51887f86358887174a87394fea78b72ed29e50bc
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  URLEmbeddedView: 08237f670e68c9ba7ae98f7de9e3e48ae2492126
 
-PODFILE CHECKSUM: 25694c6a8ab7f372061ee79a52b0e16d0a805e49
+PODFILE CHECKSUM: d5cf82a81d5a34fe678dbf14d66f5f8959d2be1d
 
 COCOAPODS: 1.7.2

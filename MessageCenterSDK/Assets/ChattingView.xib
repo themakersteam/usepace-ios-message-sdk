@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChattingView" customModule="MessageCenter">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChattingView" customModule="MessageCenterSDK" customModuleProvider="target">
             <connections>
                 <outlet property="attachButtonLeadingConstraint" destination="VlI-0o-4Cu" id="tfE-YX-oF5"/>
                 <outlet property="attachButtonTrailingConstraint" destination="LUl-Fm-4zL" id="PcG-KL-elo"/>
@@ -110,7 +110,7 @@
                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIc-Xg-CIo" customClass="SBMessageInputView" customModule="MessageCenter" customModuleProvider="target">
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIc-Xg-CIo" customClass="SBMessageInputView" customModule="MessageCenterSDK" customModuleProvider="target">
                             <rect key="frame" x="56" y="11" width="307" height="44"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
