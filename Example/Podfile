@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MessageCenterSDK_Example' do
+  pod 'MessageCenterSDK', :path => '../'
+
+  target 'MessageCenterSDK_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
