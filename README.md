@@ -22,7 +22,7 @@ pod 'MessageCenterSDK'
 
 ## Author
 
-ikarmakhan, ikarma.bred@gmail.com
+ikarmakhan
 
 ## License
 
