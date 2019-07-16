@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'MessageCenterSDK'
-    s.version          = '0.1.1'
+    s.version          = '0.1.2'
     s.summary          = 'MessageCenterSDK is chatting SDK'
     
     # This description is used to generate tags and improve search results.
@@ -39,13 +39,5 @@ Pod::Spec.new do |s|
     s.dependency 'Toast', '~> 4.0.0'
     s.resource_bundles = {
         'MessageCenterSDK' => ['MessageCenterSDK/Assets/*.{storyboard,png,xcassets,xib,lproj/*.strings}']
-    }
-    
-    #s.resources = 'MessageCenter/Resources/*.xcassets'
-    #'MessageCenter/Localizable/*.lproj/*.strings'
-    # s.public_header_files = 'Pod/Classes/**/*.h'
-    # s.frameworks = 'UIKit', 'MapKit'
+    }    
 end
-
-#pod trunk register ikarma.bred@gmail.com 'Ikarma Khan' --description='macbookpro-office'
-#pod repo push MessageCenterSDK MessageCenterSDK.podspec --allow-warnings
