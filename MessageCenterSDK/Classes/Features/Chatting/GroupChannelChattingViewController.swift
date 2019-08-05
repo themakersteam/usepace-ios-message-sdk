@@ -17,6 +17,7 @@ import UserNotifications
 import CallKit
 import URLEmbeddedView
 import Toast
+import IQKeyboardManagerSwift
 
 class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegate, SBDChannelDelegate, ChattingViewDelegate, MessageDelegate, UINavigationControllerDelegate {
     
@@ -70,15 +71,31 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     @IBOutlet weak var imageViewLoadingReasonLabel: UILabel!
     
     
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblSubTitle: UILabel!
-    @IBOutlet weak var btnBack: UIButton!
+    //    @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
+    //    @IBOutlet weak var topView: UIView!
+    //    @IBOutlet weak var lblTitle: UILabel!
+    //    @IBOutlet weak var lblSubTitle: UILabel!
+    //    @IBOutlet weak var btnBack: UIButton!
+    //    @IBOutlet weak var callBtn: UIButton!
+    
+    private var backButton : UIBarButtonItem?
+    private var callButton : UIBarButtonItem?
     
     @IBOutlet weak var patternView: UIView!
     
-    @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var callBtn: UIButton!
+    lazy var titleStackView: UIStackView = {
+        let titleLabel = UILabel()
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = self.themeObject?.primaryAccentColor //UIColor.hexStringToUIColor(hex: "FFCE09")
+        titleLabel.text = self.themeObject != nil ? self.themeObject?.title : ""
+        let subtitleLabel = UILabel()
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.textColor = self.themeObject?.primaryActionIconsColor //UIColor.hexStringToUIColor(hex: "52433E")
+        subtitleLabel.text = self.themeObject != nil ? self.themeObject?.subtitle : ""
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        stackView.axis = .vertical
+        return stackView
+    }()
     
     var currentImagePreviewTask: URLSessionDataTask?
     var lastConnectionRequest:ConnectionRequest?
@@ -144,6 +161,10 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
     
     override func viewDidLoad() {
         
@@ -172,6 +193,9 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        
     }
     
     func relaodChatView() {
@@ -189,20 +213,23 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         self.deleteDirectory()
         self.checkNotificationsSettings()
 
-        self.lblTitle.text = self.themeObject != nil ? self.themeObject?.title : ""
-        self.lblSubTitle.text = self.themeObject != nil ? self.themeObject?.subtitle : ""
+        navigationItem.titleView = titleStackView
+        
+//        self.lblTitle.text = self.themeObject != nil ? self.themeObject?.title : ""
+//        self.lblSubTitle.text = self.themeObject != nil ? self.themeObject?.subtitle : ""
 
         self.chattingView.endTypingIndicator()
-        
-        if self.lblTitle.text?.count == 0  {
-            // No Driver name!
-            self.topViewHeightConstraint.constant = 55
-        }
-        else{
-            self.topViewHeightConstraint.constant = 75
-        }
         scrollTableToBottom()
-        self.topView.layoutIfNeeded()
+        
+//        if self.lblTitle.text?.count == 0  {
+//            // No Driver name!
+//            self.topViewHeightConstraint.constant = 55
+//        }
+//        else{
+//            self.topViewHeightConstraint.constant = 75
+//        }
+//
+//        self.topView.layoutIfNeeded()
     }
     
     func checkNotificationsSettings () {
@@ -350,8 +377,8 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             preSendMessages: self.chattingView.preSendMessages,
             channelUrl: self.groupChannel.channelUrl
         )
-        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
     
@@ -362,6 +389,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         
         SBDMain.removeChannelDelegate(forIdentifier: self.description)
         SBDMain.removeConnectionDelegate(forIdentifier: self.description)
+        IQKeyboardManager.shared.enable = false
         SBDMain.disconnect {
             self.dismiss(animated: true, completion: nil)
         }
@@ -1731,44 +1759,44 @@ extension GroupChannelChattingViewController: UIImagePickerControllerDelegate {
 //MARK: -
 fileprivate extension GroupChannelChattingViewController {
     
-    @objc private func keyboardWillShow(notification: Notification) {
-        self.keyboardShown = true
-        if #available(iOS 11.0, *) {
-            //            offset =  Double(view.safeAreaInsets.bottom)
-        }
-        let keyboardInfo = notification.userInfo
-        let keyboardFrameBegin = keyboardInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-        let keyboardFrameBeginRect = (keyboardFrameBegin as! NSValue).cgRectValue
-        let duration = keyboardInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
-        let curve = keyboardInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
-        DispatchQueue.main.async {
-            self.bottomMargin.constant = keyboardFrameBeginRect.size.height
-            UIView.animate(withDuration: duration.doubleValue, delay: 0.0, options: [UIView.AnimationOptions(rawValue: UInt(curve))]
-                , animations: {
-                    self.view.layoutIfNeeded()
-            }, completion: { (status) in
-                //self.chattingView.stopMeasuringVelocity = true
-                //self.chattingView.scrollToBottom(force: true)
-            })
-        }
-    }
-    
-    @objc private func keyboardWillHide(notification: Notification) {
-        self.keyboardShown = false
-        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
-        let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
-        DispatchQueue.main.async {
-            self.bottomMargin.constant = 0
-            UIView.animate(withDuration: duration.doubleValue, delay: 0.0, options: [UIView.AnimationOptions(rawValue: UInt(curve))]
-                , animations: {
-                    self.view.layoutIfNeeded()
-            }, completion: { (status) in
-                //self.chattingView.scrollToBottom(force: true)
-                //                self.chattingView.chattingTableView.contentInset = UIEdgeInsetsMake(0, 0, 0.0, 0)
-            })
-            
-        }
-    }
+//    @objc private func keyboardWillShow(notification: Notification) {
+//        self.keyboardShown = true
+//        if #available(iOS 11.0, *) {
+//            //            offset =  Double(view.safeAreaInsets.bottom)
+//        }
+//        let keyboardInfo = notification.userInfo
+//        let keyboardFrameBegin = keyboardInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+//        let keyboardFrameBeginRect = (keyboardFrameBegin as! NSValue).cgRectValue
+//        let duration = keyboardInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
+//        let curve = keyboardInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+//        DispatchQueue.main.async {
+//            self.bottomMargin.constant = keyboardFrameBeginRect.size.height
+//            UIView.animate(withDuration: duration.doubleValue, delay: 0.0, options: [UIView.AnimationOptions(rawValue: UInt(curve))]
+//                , animations: {
+//                    self.view.layoutIfNeeded()
+//            }, completion: { (status) in
+//                //self.chattingView.stopMeasuringVelocity = true
+//                //self.chattingView.scrollToBottom(force: true)
+//            })
+//        }
+//    }
+//
+//    @objc private func keyboardWillHide(notification: Notification) {
+//        self.keyboardShown = false
+//        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
+//        let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+//        DispatchQueue.main.async {
+//            self.bottomMargin.constant = 0
+//            UIView.animate(withDuration: duration.doubleValue, delay: 0.0, options: [UIView.AnimationOptions(rawValue: UInt(curve))]
+//                , animations: {
+//                    self.view.layoutIfNeeded()
+//            }, completion: { (status) in
+//                //self.chattingView.scrollToBottom(force: true)
+//                //                self.chattingView.chattingTableView.contentInset = UIEdgeInsetsMake(0, 0, 0.0, 0)
+//            })
+//
+//        }
+//    }
     
     @objc private func applicationWillTerminate(notification: Notification) {
         CommonUtils.dumpMessages(
@@ -1791,45 +1819,66 @@ fileprivate extension GroupChannelChattingViewController {
     }
     
     func setNavigationItems() {
+
+        var barHeight = (themeObject?.title ?? "").count > 0 ? 75.0 : 55.0
         
-        self.lblTitle.text = self.themeObject != nil ? self.themeObject?.title : ""
-        self.lblSubTitle.text = self.themeObject != nil ? self.themeObject?.subtitle : ""
+        self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: Double(UIScreen.main.bounds.width), height: barHeight)
+        navigationItem.titleView = titleStackView
+        
+//        self.lblTitle.text = self.themeObject != nil ? self.themeObject?.title : ""
+//        self.lblSubTitle.text = self.themeObject != nil ? self.themeObject?.subtitle : ""
         
         if self.themeObject != nil {
-            self.lblTitle.textColor = self.themeObject?.primaryAccentColor
-            self.lblSubTitle.textColor = self.themeObject?.primaryActionIconsColor
+//            self.lblTitle.textColor = self.themeObject?.primaryAccentColor
+//            self.lblSubTitle.textColor = self.themeObject?.primaryActionIconsColor
             let backImg = UIImage(named: "back", in: self.podBundle, compatibleWith: nil)
-            self.btnBack.setImage(backImg?.withRenderingMode(.alwaysTemplate), for: .normal)
-            self.btnBack.tintColor = self.themeObject?.primaryNavigationButtonColor
+            let callImg = UIImage(named: "icCall", in: podBundle, compatibleWith: nil)
             
-            self.callBtn.isHidden = !(self.themeObject?.enableCalling ?? false)
-            self.callBtn.alpha = (self.groupChannel?.isFrozen ?? true) ? 0.5 : 1
-        }
-        
-        if self.lblTitle.text?.count == 0  {
-            // No Driver name!
-            self.topViewHeightConstraint.constant = 55
-            self.topView.layoutIfNeeded()
-        }
-        
-        if UIView.userInterfaceLayoutDirection(for: self.view.semanticContentAttribute) == .rightToLeft {
-            btnBack.transform = btnBack.transform.rotated(by: CGFloat(Double.pi))
-            if let sendBtnImage = self.chattingView.sendButton.imageView {
-                sendBtnImage.transform = sendBtnImage.transform.rotated(by: CGFloat(Double.pi))
+            backButton = UIBarButtonItem(image: backImg, landscapeImagePhone: backImg, style: .plain, target: self, action: #selector(close))
+            callButton = UIBarButtonItem(image: callImg, landscapeImagePhone: callImg, style: .plain, target: self, action: #selector(invokeCall))
+            
+            navigationItem.leftBarButtonItem = backButton
+            if let canCall = themeObject?.enableCalling {
+                if canCall == true {
+                    navigationItem.rightBarButtonItem = callButton
+                }
             }
+
+            callButton?.isEnabled = (self.groupChannel?.isFrozen ?? true) ? false : true
+            
+
+//            self.btnBack.setImage(backImg?.withRenderingMode(.alwaysTemplate), for: .normal)
+            backButton?.tintColor = self.themeObject?.primaryNavigationButtonColor
+            callButton?.tintColor = self.themeObject?.primaryActionIconsColor
+            
+//            self.callBtn.isHidden = !(self.themeObject?.enableCalling ?? false)
             
         }
-        self.btnBack.addTarget(self, action: #selector(close), for: .touchUpInside)
-        self.callBtn.addTarget(self, action: #selector(invokeCall), for: .touchUpInside)
+        
+//        if self.lblTitle.text?.count == 0  {
+//            // No Driver name!
+//            self.topViewHeightConstraint.constant = 55
+//            self.topView.layoutIfNeeded()
+//        }
+        
+//        if UIView.userInterfaceLayoutDirection(for: self.view.semanticContentAttribute) == .rightToLeft {
+//            btnBack.transform = btnBack.transform.rotated(by: CGFloat(Double.pi))
+//            if let sendBtnImage = self.chattingView.sendButton.imageView {
+//                sendBtnImage.transform = sendBtnImage.transform.rotated(by: CGFloat(Double.pi))
+//            }
+//
+//        }
+//        self.btnBack.addTarget(self, action: #selector(close), for: .touchUpInside)
+//        self.callBtn.addTarget(self, action: #selector(invokeCall), for: .touchUpInside)
     }
     
     func addObservers() {
         
-        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+//
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillTerminate(notification:)), name: UIApplication.willTerminateNotification, object: nil)
     }
 }

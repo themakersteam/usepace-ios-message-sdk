@@ -54,13 +54,13 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let appId = "FE3AD311-7F0F-4E7E-9E22-25FF141A37C0"
-        let userId = "rider_ikarma_pace"
-        let accessToken = "f0adb60e5cbffdedf90f28d7e510c91111f8b82a"
+        let userId = "rider_barsi_m"
+        let accessToken = "9ac31b1d6829634409c5fd5b0909f4b3107e1b29"
         let client = ClientType.sendBird
         let pushToken = "2121212324rdfdcef".data(using: .utf8)
         let unique = false
-        let channel = "sendbird_group_channel_4291064_d5d11fa6234d17b2a68019139ab23e9e928af2eb"
-        let channelId = "sendbird_group_channel_4291064_d5d11fa6234d17b2a68019139ab23e9e928af2eb"
+        let channel = "sendbird_group_channel_3200992_1fbbfcf89d9537d4c8f9aafbe280abc4719837d2"
+        let channelId = "sendbird_group_channel_3200992_1fbbfcf89d9537d4c8f9aafbe280abc4719837d2"
         
         let connectionRequest = ConnectionRequest(appId: appId, userId: userId, accessToken: accessToken, client: client, unique: unique)
         connectionRequest.updateChannelId(channelId: channelId)
@@ -84,6 +84,7 @@ class ViewController: UIViewController {
             }
             
         }
+        
         
     }
     

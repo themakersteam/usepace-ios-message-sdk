@@ -235,7 +235,10 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             var typingImages: [UIImage] = []
             for i in 1...50 {
                 let typingImageFrameName = String.init(format: "%02d", i)
-                typingImages.append(UIImage(named: typingImageFrameName, in: podBundle, compatibleWith: nil)!)
+                // Crash fixed
+                if let image = UIImage(named: typingImageFrameName, in: podBundle, compatibleWith: nil) {
+                    typingImages.append(image)
+                }
             }
             self.typingIndicatorImageView.animationImages = typingImages
             self.typingIndicatorImageView.animationDuration = 1.5
