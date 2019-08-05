@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'MessageCenterSDK'
-    s.version          = '0.1.2'
+    s.version          = '0.1.3'
     s.summary          = 'MessageCenterSDK is chatting SDK'
     
     # This description is used to generate tags and improve search results.
@@ -37,6 +37,7 @@ Pod::Spec.new do |s|
     s.dependency 'URLEmbeddedView'
     s.dependency 'CryptoSwift'
     s.dependency 'Toast', '~> 4.0.0'
+    s.dependency 'IQKeyboardManagerSwift'
     s.resource_bundles = {
         'MessageCenterSDK' => ['MessageCenterSDK/Assets/*.{storyboard,png,xcassets,xib,lproj/*.strings}']
     }    

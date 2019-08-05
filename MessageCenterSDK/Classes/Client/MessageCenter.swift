@@ -134,6 +134,7 @@ public class MessageCenter {
                 
                 if !isOpen {
                     groupChannelVC = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: resourceBundle)
+                    //groupChannelVC = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: resourceBundle)
                 }
                 groupChannelVC.groupChannel = groupChannel
                 groupChannelVC.lastConnectionRequest = connectionRequest
@@ -154,7 +155,7 @@ public class MessageCenter {
                     isOpen = true
                     oldVC = parentVC
                     let navController = UINavigationController(rootViewController: groupChannelVC)
-                    navController.isNavigationBarHidden = true
+                    navController.isNavigationBarHidden = false
                     parentVC.present(navController, animated: true, completion: nil)
                 }
                 
