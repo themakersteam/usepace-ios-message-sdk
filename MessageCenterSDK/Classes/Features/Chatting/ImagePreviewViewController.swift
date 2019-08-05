@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 protocol ImagePreviewProtocol: class {
     func imagePreviewDidDismiss(_ image: UIImage? , caption: String)
@@ -205,9 +206,12 @@ extension ImagePreviewViewController: SBMessageInputViewDelegate {
         }
         textView.layoutIfNeeded()
     }
+    
     func inputViewShouldBeginEditing(textView: UITextView) -> Bool {
+        IQKeyboardManager.shared.enableAutoToolbar = false
         return true
     }
+    
     func inputView(textView: UITextView, shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
         return true
     }
