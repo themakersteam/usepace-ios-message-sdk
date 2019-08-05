@@ -9,8 +9,7 @@
 import UIKit
 import SendBirdSDK
 import Alamofire
-
-
+import IQKeyboardManagerSwift
 
 protocol ChattingViewDelegate: class {
     func loadMoreMessage(view: UIView)
@@ -836,6 +835,7 @@ extension ChattingView: SBMessageInputViewDelegate {
     }
     
     func inputViewShouldBeginEditing(textView: UITextView) -> Bool {
+        IQKeyboardManager.shared.enableAutoToolbar = false
         return true
     }
     func inputView(textView: UITextView, shouldChangeTextInRange: NSRange, replacementText: String) -> Bool {
@@ -896,6 +896,12 @@ extension ChattingView: SBMessageInputViewDelegate {
 extension ChattingView : UITextViewDelegate {
 
     // use auto-growing textfield here
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        
+        
+        return true
+    }
     
     func textViewDidChange(_ textView: UITextView) {
         if textView == self.messageTextView {
