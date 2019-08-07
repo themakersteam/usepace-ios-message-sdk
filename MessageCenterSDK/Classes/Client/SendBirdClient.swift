@@ -148,7 +148,8 @@ class SendBirdClient: ClientProtocol {
         
         group.enter()
         DispatchQueue.main.async {
-            if unique {
+            if unique == false {
+                // if unique is true, register deletes all user tokens before registration else it keeps other tokens and registers a new one. So while unregistering if unique is false, we need to delete that specific token only.
                 SBDMain.unregisterPushToken(token) { (response, err) in
                     error = err
                     group.leave()
@@ -164,7 +165,7 @@ class SendBirdClient: ClientProtocol {
         
         group.notify(queue: .main) { [weak self] in
             self?.disconnectClient()
-            completion(error != nil)
+            completion(error == nil)
         }
     }
 
