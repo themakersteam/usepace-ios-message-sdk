@@ -449,7 +449,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         }
         
         self.isLoading = true
-        
+        self.isIndicatingLoading = true
         self.groupChannel.getPreviousMessages(byTimestamp: timestamp,
                                               limit: 30,
                                               reverse: !initial,
@@ -520,6 +520,9 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     DispatchQueue.main.async {
                         if initial == true {
                             self.scrollTableToBottom()
+                        }
+                        else {
+                            self.chattingView.chattingTableView.reloadData()
                         }
                         
                     }

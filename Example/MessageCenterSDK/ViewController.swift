@@ -54,13 +54,13 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let appId = "FE3AD311-7F0F-4E7E-9E22-25FF141A37C0"
-        let userId = "rider_barsi_m"
-        let accessToken = "9ac31b1d6829634409c5fd5b0909f4b3107e1b29"
+        let userId = "customer_swyft_465"
+        let accessToken = "a6b569db6c0fbfcf7539d9d57132b9278faf3289"
         let client = ClientType.sendBird
         let pushToken = "2121212324rdfdcef".data(using: .utf8)
         let unique = false
-        let channel = "sendbird_group_channel_3200992_1fbbfcf89d9537d4c8f9aafbe280abc4719837d2"
-        let channelId = "sendbird_group_channel_3200992_1fbbfcf89d9537d4c8f9aafbe280abc4719837d2"
+        let channel = "sendbird_group_channel_17112643_dfcc267fbe20c354bf1a20e824aa5998c508a94a"
+        let channelId = "sendbird_group_channel_17112643_dfcc267fbe20c354bf1a20e824aa5998c508a94a"
         
         let connectionRequest = ConnectionRequest(appId: appId, userId: userId, accessToken: accessToken, client: client, unique: unique)
         connectionRequest.updateChannelId(channelId: channelId)
