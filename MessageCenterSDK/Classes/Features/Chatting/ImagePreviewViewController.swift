@@ -71,17 +71,19 @@ class ImagePreviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
         self.createGradientLayer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.addObservers()
+        //self.addObservers()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        removeKeyboardObservers()
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        //removeKeyboardObservers()
     }
     func createGradientLayer() {
 //        let gradientLayer = CAGradientLayer()
@@ -107,14 +109,14 @@ class ImagePreviewViewController: UIViewController {
     }
     
     func removeKeyboardObservers() {
-        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
     func addObservers() {
-        removeKeyboardObservers()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+//        removeKeyboardObservers()
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func keyboardDidShow(notification: Notification) {
