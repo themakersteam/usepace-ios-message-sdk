@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'MessageCenterSDK'
-    s.version          = '0.1.9'
+    s.version          = '0.1.10'
     s.summary          = 'MessageCenterSDK is chatting SDK'
     
     # This description is used to generate tags and improve search results.
@@ -42,3 +42,5 @@ Pod::Spec.new do |s|
         'MessageCenterSDK' => ['MessageCenterSDK/Assets/*.{storyboard,png,xcassets,xib,lproj/*.strings}']
     }    
 end
+
+
