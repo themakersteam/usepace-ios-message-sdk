@@ -69,7 +69,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     var isScrollingFast: Bool = false
     
     private var _currentUserId: String = ""
-   
+    
     var currentUserId: String {
         get {
             if self._currentUserId != "" {
@@ -107,6 +107,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             attachButtonLeadingConstraint.constant = 0
             fileAttachButton.layoutIfNeeded()
         }
+        
+        addObservers()
     }
     
     func updateTheme(themeObject: ThemeObject) {
@@ -161,7 +163,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.messageTextView.layer.masksToBounds = true
         self.messageTextView.layer.borderWidth = 1.0
         self.messageTextView.delegate = self
-     
+        
         configureTableView()
     }
     
@@ -178,7 +180,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.chattingTableView.register(IncomingImageFileMessageTableViewCell.nib(), forCellReuseIdentifier: IncomingImageFileMessageTableViewCell.string)
         self.chattingTableView.register(IncomingGeneralUrlPreviewMessageTableViewCell.nib(), forCellReuseIdentifier: IncomingGeneralUrlPreviewMessageTableViewCell.string)
         self.chattingTableView.register(IncomingLocationMessageTableViewCell.nib(), forCellReuseIdentifier: IncomingLocationMessageTableViewCell.string)
-
+        
         // Outgoing
         self.chattingTableView.register(OutgoingUserMessageTableViewCell.nib(), forCellReuseIdentifier: OutgoingUserMessageTableViewCell.string)
         self.chattingTableView.register(OutgoingImageFileMessageTableViewCell.nib(), forCellReuseIdentifier: OutgoingImageFileMessageTableViewCell.string)
@@ -203,20 +205,20 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         
         //   Find number of sections, rows in that section and scroll.
         let section = chattingTableView.numberOfSections - 1
-
+        
         if section < 0 {
             return
         }
         
         let rows = chattingTableView.numberOfRows(inSection: section) - 1
-
+        
         if rows < 0 {
             return
         }
         
         let indexPath = IndexPath(row: rows, section: section)
         self.chattingTableView.selectRow(at: indexPath, animated: false, scrollPosition: .bottom)
-        self.chattingTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)        
+        self.chattingTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
     }
     
     // MARK: - typingIndicatorHandlers
@@ -260,16 +262,16 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.typingIndicatorContainerView.layoutIfNeeded()
     }
     
-   
+    
     
     
     // MARK: - scrollViewDelegate
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        self.stopMeasuringVelocity = false
+        //        self.stopMeasuringVelocity = false
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        self.stopMeasuringVelocity = true
+        //        self.stopMeasuringVelocity = true
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -321,7 +323,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -333,7 +335,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     
     // MARK: -  UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return section == 0 ? 1 : self.messages.count
     }
     
@@ -359,7 +361,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 // Outgoing
                 if userMessage.customType == "url_preview" {
                     guard let cell = tableView.dequeueReusableCell(withIdentifier: OutgoingGeneralUrlPreviewMessageTableViewCell.string, for: indexPath) as? OutgoingGeneralUrlPreviewMessageTableViewCell else {
-                        // FIXME: --- 
+                        // FIXME: ---
                         return UITableViewCell()
                     }
                     
@@ -371,7 +373,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     
                     cell.updateBackgroundColour()
                     
-                   // cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
+                    // cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         cell.setPreviousMessage(aPrevMessage: self.messages[indexPath.row])
                     }
@@ -405,7 +407,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                                 })
                             }
                             else {
-
+                                
                                 Alamofire.request(imageUrl, method: .get).responseImage { response in
                                     
                                     guard let image = response.result.value else {
@@ -501,7 +503,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                         if let _ = preSendMessages[requestId] {
                             cell.showSendingStatus()
                         }
-                        
+                            
                         else {
                             if let _ = resendableMessages[requestId] {
                                 cell.showMessageResendButton()
@@ -624,7 +626,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     guard let cell = tableView.dequeueReusableCell(withIdentifier: OutgoingImageFileMessageTableViewCell.string, for: indexPath) as? OutgoingImageFileMessageTableViewCell else {
                         return UITableViewCell()
                     }
-
+                    
                     cell.themeObject = themeObject
                     cell.setPreviousMessage(aPrevMessage: prevMessage)
                     cell.setModel(aMessage: fileMessage, channel: self.channel)
@@ -637,7 +639,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                         else {
                             cell.fileImageView.image = nil
                         }
-
+                        
                         
                         cell.imageLoadingIndicator.startAnimating()
                         cell.imageLoadingIndicator.isHidden = false
@@ -654,7 +656,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                                 }
                             }
                         }
-                        
+                            
                         else {
                             // Re-send Message - Message was failed
                             if let _ = resendableMessages[requestId],
@@ -666,7 +668,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                                 cell.showMessageResendButton()
                                 return cell
                             }
-                            
+                                
                             else {
                                 // Cached Message - already sent
                                 
@@ -690,7 +692,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                         
                         return cell
                         
-//                        return cell
+                        //                        return cell
                     }
                 }
                 
@@ -890,11 +892,48 @@ extension ChattingView: SBMessageInputViewDelegate {
             }
         }
     }
+    
+    
+    func removeKeyboardObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+    
+    func addObservers() {
+        removeKeyboardObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardDidShow(notification: Notification) {
+        var offset = 0.0
+        
+        if #available(iOS 11.0, *   ) {
+            offset =  Double(self.safeAreaInsets.bottom)
+        }
+        
+        let keyboardInfo = notification.userInfo
+        let keyboardFrameBegin = keyboardInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+        if let keyboardFrameBeginRect = (keyboardFrameBegin as? NSValue)?.cgRectValue {
+            DispatchQueue.main.async {
+                self.chattingTableView.contentInset = UIEdgeInsets(top: keyboardFrameBeginRect.size.height - CGFloat(offset), left: 0.0, bottom: 0.0, right: 0.0)
+            }
+        }
+    }
+    
+    @objc private func keyboardDidHide(notification: Notification) {
+        DispatchQueue.main.async {
+            self.chattingTableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        }
+    }
+    
 }
 
 // MARK: - UITextViewDelegate
 extension ChattingView : UITextViewDelegate {
-
+    
+    
+    
     // use auto-growing textfield here
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
@@ -996,3 +1035,5 @@ extension ChattingView : UITextViewDelegate {
         return true
     }
 }
+
+
