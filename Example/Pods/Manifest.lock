@@ -1,10 +1,10 @@
 PODS:
-  - Alamofire (4.8.2)
+  - Alamofire (4.9.0)
   - AlamofireImage (3.5.2):
     - Alamofire (~> 4.8)
   - CryptoSwift (1.0.0)
   - FLAnimatedImage (1.0.12)
-  - IQKeyboardManagerSwift (6.4.0)
+  - IQKeyboardManagerSwift (6.5.1)
   - MessageCenterSDK (0.1.10):
     - AlamofireImage
     - CryptoSwift
@@ -13,9 +13,9 @@ PODS:
     - SendBirdSDK
     - Toast (~> 4.0.0)
     - URLEmbeddedView
-  - SendBirdSDK (3.0.143)
+  - SendBirdSDK (3.0.154)
   - Toast (4.0.0)
-  - URLEmbeddedView (0.17.1)
+  - URLEmbeddedView (0.18.0)
 
 DEPENDENCIES:
   - MessageCenterSDK (from `../`)
@@ -36,15 +36,15 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
+  IQKeyboardManagerSwift: 9ac7524fad9f9fe9a3b98c927e7772471ca546d2
   MessageCenterSDK: f525544563d9e0c7bb69a96d7ac44f1637c593c5
-  SendBirdSDK: 51887f86358887174a87394fea78b72ed29e50bc
+  SendBirdSDK: 4dc7048b4790d30777a5826884cdc4d9003e431e
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  URLEmbeddedView: 08237f670e68c9ba7ae98f7de9e3e48ae2492126
+  URLEmbeddedView: 3fe17ae535d2b8d38c3b08ab8ba0aea5efe5d1cd
 
 PODFILE CHECKSUM: d5cf82a81d5a34fe678dbf14d66f5f8959d2be1d
 

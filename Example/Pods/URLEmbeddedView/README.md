@@ -20,10 +20,9 @@
 - [x] Clearable image cache
 - [x] Clearable data cache
 - [x] Support Swift3.2 (until 0.11.x)
-- [x] Support Swift4
+- [x] Supprot Swift4.x (until 0.17.1)
+- [x] Support Swift5 (since 0.18.0)
 - [x] Support Carthage since 0.11.1
-- [x] Supprot Swift4.1 since 0.15.0
-- [x] Supprot Swift4.2 since 0.17.0
 - [x] Support tvOS since 0.16.0
 - [x] Custom implementation of OGData cache
 
@@ -204,7 +203,7 @@ github "marty-suzuki/URLEmbeddedView"
 
 ## Requirements
 
-- Xcode 9 or greater
+- Xcode 10.2 or greater
 - iOS 8.0 or greater
 - tvOS 10.0 or greater
 - UIKit

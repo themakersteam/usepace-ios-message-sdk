@@ -12,7 +12,7 @@ import AVKit
 import AVFoundation
 import MobileCoreServices
 import Photos
-import FLAnimatedImage 
+import FLAnimatedImage
 import UserNotifications
 import CallKit
 import URLEmbeddedView
@@ -683,14 +683,14 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             }
             self.chattingView.messages.append(preSendMessage)
 //            self.chattingView.chattingTableView.beginUpdates()
-//            
+//
 //            UIView.setAnimationsEnabled(false)
 //            if let messageIndex = self.chattingView.messages.firstIndex(of: preSendMessage) {
 //                self.chattingView.chattingTableView.insertRows(at: [IndexPath(row: messageIndex,
 //                                                                              section: 1)],
 //                                                               with: .bottom)
 //            }
-//            
+//
 //            UIView.setAnimationsEnabled(true)
 //            self.chattingView.chattingTableView.endUpdates()
             
@@ -1674,7 +1674,7 @@ extension GroupChannelChattingViewController: UIImagePickerControllerDelegate {
         options.isNetworkAccessAllowed = false
         options.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
         if asset != nil {
-            PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil, resultHandler: { (result, info) in
+            PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: options, resultHandler: { (result, info) in
                 if (result != nil) {
                     // Call the Caption ViewController
                     let imageCaptionVC = ImagePreviewViewController(nibName: "ImagePreviewViewController", bundle: self.podBundle)
@@ -1730,7 +1730,7 @@ extension GroupChannelChattingViewController: UIImagePickerControllerDelegate {
                     options.isNetworkAccessAllowed = false
                     options.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
                     if asset != nil {
-                        PHImageManager.default().requestImage(for: asset!, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil, resultHandler: { (result, info) in
+                        PHImageManager.default().requestImage(for: asset!, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: options, resultHandler: { (result, info) in
                             if (result != nil) {
                                 
                                 // Call the Caption ViewController
@@ -1994,7 +1994,7 @@ extension GroupChannelChattingViewController : ImagePreviewProtocol {
         DispatchQueue.main.async {
             self.chattingView.chattingTableView.reloadData()
         }
-    }    
+    }
 }
 
 // To preview the image that is uploading, save it to Documents directory. Unless image is uploaded, URL is not generated and we can't download the image
