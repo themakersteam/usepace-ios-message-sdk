@@ -156,6 +156,8 @@ public class MessageCenter {
                     oldVC = parentVC
                     let navController = UINavigationController(rootViewController: groupChannelVC)
                     navController.isNavigationBarHidden = false
+                    navController.modalPresentationStyle = .fullScreen
+//                    groupChannelVC.modalPresentationStyle = .fullScreen
                     parentVC.present(navController, animated: true, completion: nil)
                 }
                 
